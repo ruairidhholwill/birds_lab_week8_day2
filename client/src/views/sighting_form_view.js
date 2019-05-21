@@ -12,6 +12,19 @@ SightingFormView.prototype.bindEvents = function () {
 
 SightingFormView.prototype.handleSubmit = function (evt) {
   evt.preventDefault();
+  const newSighting = this.createNewSighting(evt.target)
+  PubSub.publish('SightingFormView:sumbit', (newSighting)) 
+  // console.log(newSighting)
+  evt.target.reset()
+}
+
+SightingFormView.prototype.createNewSighting = function (form) {
+  const newSighting = {
+    species: form.species.value,
+    location: form.location.value,
+    date: form.date.value
+  }
+  return newSighting
 }
 
 module.exports = SightingFormView;

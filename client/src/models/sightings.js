@@ -28,4 +28,6 @@ Sightings.prototype.deleteSighting = function (sightingId) {
     .catch(console.error);
 };
 
+// create submit which subs to form_view
+
 module.exports = Sightings;
