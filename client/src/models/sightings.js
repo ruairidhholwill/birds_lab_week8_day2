@@ -10,6 +10,11 @@ Sightings.prototype.bindEvents = function () {
   PubSub.subscribe('SightingView:sighting-delete-clicked', (evt) => {
     this.deleteSighting(evt.detail);
   });
+
+  PubSub.subscribe('SightingFormView:sumbit', (evt) => {
+    console.log('model', evt.detail)
+    this.postSighting(evt.detail)
+  })
 };
 
 Sightings.prototype.getData = function () {
@@ -29,5 +34,12 @@ Sightings.prototype.deleteSighting = function (sightingId) {
 };
 
 // create submit which subs to form_view
+Sightings.prototype.postSighting = function (sighting) {
+  this.request.post(sighting)
+  // console.log('post function', sighting)
+  .then((sightings) => {
+    PubSub.publish('Sightings:data-loaded', sightings)
+  })
+}
 
 module.exports = Sightings;

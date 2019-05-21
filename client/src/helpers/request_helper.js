@@ -14,7 +14,15 @@ RequestHelper.prototype.delete = function (id) {
     .then((response) => response.json());
 };
 
-// prototype.create function (form)
-//has post inside 
+RequestHelper.prototype.post = function (data) {
+  console.log('request_helper', data)
+  return fetch((this.url), {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: { 'Content-Type': 'application/json'}
+  })
+    .then((response) => response.json())
+}
+
 
 module.exports = RequestHelper;

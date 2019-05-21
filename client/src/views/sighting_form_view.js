@@ -14,7 +14,7 @@ SightingFormView.prototype.handleSubmit = function (evt) {
   evt.preventDefault();
   const newSighting = this.createNewSighting(evt.target)
   PubSub.publish('SightingFormView:sumbit', (newSighting)) 
-  // console.log(newSighting)
+  console.log('form view', newSighting)
   evt.target.reset()
 }
 

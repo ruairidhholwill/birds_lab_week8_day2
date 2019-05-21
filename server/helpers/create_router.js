@@ -29,7 +29,14 @@ const createRouter = function (collection) {
       });
   });
 
-  // add in post router
+ router.post('/', (req, res) => {
+   const newSighting = req.body
+   console.log(newSighting)
+   collection
+    .insertOne(newSighting)
+    .then(() => collection.find().toArray())
+    .then((docs) => res.json(docs))
+ })
 
   router.delete('/:id', (req, res) => {
     const id = req.params.id;
